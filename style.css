@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100..900&display=swap');
+
+body {
+    background-color: #05002b;
+    font-family: "Kanit", sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Rows with gradient + hover animation */
+.icon-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 700px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(121, 14, 182, 0.25), rgba(12, 0, 61, 0.25));
+    border: 2px solid #080033;
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeSlideUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.icon-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(177, 47, 255, 0.5);
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    color: #b12fff;
+}
+
+.icon path,
+.icon g path {
+    fill: currentColor !important;
+}
+
+.text {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px 10px;
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    color: #e5ab38;
+    transition: background 0.2s;
+}
+
+.text:hover {
+    background-color: rgba(177,47,255,0.2);
+}
+
+.more-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: #e5ab38;
+    transition: color 0.2s ease;
+}
+
+.more-icon:hover {
+    color: #ffffff;
+}
+
+/* Background Overlay */
+#popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#popup-overlay.active {
+    opacity: 1;
+}
+
+/* QR popup with entrance animation */
+#qr-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%); /* Starts slightly lower */
+    background: #05002b;
+    border: 2px solid #b12fff;
+    border-radius: 12px;
+    padding: 25px;
+    z-index: 100;
+    text-align: center;
+    opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+/* Open state triggers the animation and final position */
+#qr-popup.active {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 30px rgba(177, 47, 255, 0.4);
+}
+
+/* Add row-style hover animation to the popup itself */
+#qr-popup:hover {
+    transform: translate(-50%, -52%);
+    box-shadow: 0 0 40px rgba(177, 47, 255, 0.6);
+}
+
+#qr-code canvas {
+    border-radius: 8px;
+}
+
+#qr-popup button {
+    margin-top: 15px;
+    padding: 8px 25px;
+    background: #b12fff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "Kanit", sans-serif;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#qr-popup button:hover {
+    background: #8e24cf;
+    transform: scale(1.05);
+}
+
+.ctc::selection {
+    background: #b12fff;
+    color: white;
+}
+
+/* Animation Keyframes */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation for rows */
+.icon-row:nth-child(1) { animation-delay: 0.1s; }
+.icon-row:nth-child(2) { animation-delay: 0.3s; }
+.icon-row:nth-child(3) { animation-delay: 0.5s; }
